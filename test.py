@@ -10,6 +10,7 @@ from util import html
 import torch
 import numpy as np
 
+#make shift in one direction
 def shift(img, shift_size, direction='horizontal'):
     '''Format of img B x C x H x W'''
     if shift_size == 0:
@@ -23,7 +24,7 @@ def shift(img, shift_size, direction='horizontal'):
     if direction == 'vertical' and shift_size > 0:
         return torch.cat([img[..., :shift_size, :].flip(2), img[..., :-shift_size, :]], dim=2)
 
-    
+#make shift in two directions simultaneously
 def complex_shift(img, x, y):
     return shift(shift(img, x, 'horizontal'), y, 'vertical')
     
@@ -79,18 +80,21 @@ for i, data in enumerate(dataset):
         generated = run_onnx(opt.onnx, opt.data_type, minibatch, [data['label'], data['inst']])
     else:
         generated = model.inference(data['label'], data['inst'], data['image'])
+        
+        #generate random shift
         x = y = 0
         while x == 0 and y == 0:
             x, y = np.random.randint(-1, 2, size=2)
+        
+        #shift inputs and output
         shifted_label = complex_shift(data['label'], x, y)
         shifted_inst = complex_shift(data['inst'], x, y)
         shifted_generated = complex_shift(generated, x, y)
 
         alt_generated = model.inference(shifted_label, shifted_inst, data['image'])
-        difference = alt_generated - shifted_generated
 
-        valid_difference = difference
-
+        #find valid area for evaluating metrics
+        valid_difference = alt_generated - shifted_generated
         if x < 0:
             valid_difference = valid_difference[..., :x]
         if x > 0:
@@ -99,7 +103,10 @@ for i, data in enumerate(dataset):
             valid_difference = valid_difference[..., :y, :]
         if y > 0:
             valid_difference = valid_difference[..., y:, :]
+
+        #evaluate EQ-T metrics
         value = 10 * torch.log10(4 / (valid_difference**2).mean())
+
         text_file.write(str(data['path']) + ' ' + str(value.item()) + '\n')
         metrics.append(value.item())
         
