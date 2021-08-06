@@ -1,0 +1,17 @@
+['./datasets/cityscapes/test_label/frankfurt_000000_000576_gtFine_labelIds.png'] 31.18341827392578
+['./datasets/cityscapes/test_label/frankfurt_000000_001236_gtFine_labelIds.png'] 27.968605041503906
+['./datasets/cityscapes/test_label/frankfurt_000000_003357_gtFine_labelIds.png'] 32.00848388671875
+['./datasets/cityscapes/test_label/frankfurt_000000_011810_gtFine_labelIds.png'] 27.9873104095459
+['./datasets/cityscapes/test_label/frankfurt_000000_012868_gtFine_labelIds.png'] 27.765295028686523
+['./datasets/cityscapes/test_label/frankfurt_000001_013710_gtFine_labelIds.png'] 33.1883659362793
+['./datasets/cityscapes/test_label/frankfurt_000001_015328_gtFine_labelIds.png'] 31.08591079711914
+['./datasets/cityscapes/test_label/frankfurt_000001_023769_gtFine_labelIds.png'] 27.786972045898438
+['./datasets/cityscapes/test_label/frankfurt_000001_028335_gtFine_labelIds.png'] 29.82712745666504
+['./datasets/cityscapes/test_label/frankfurt_000001_032711_gtFine_labelIds.png'] 28.25400161743164
+['./datasets/cityscapes/test_label/frankfurt_000001_033655_gtFine_labelIds.png'] 30.43722915649414
+['./datasets/cityscapes/test_label/frankfurt_000001_042733_gtFine_labelIds.png'] 31.065656661987305
+['./datasets/cityscapes/test_label/frankfurt_000001_047552_gtFine_labelIds.png'] 30.25630760192871
+['./datasets/cityscapes/test_label/frankfurt_000001_054640_gtFine_labelIds.png'] 32.171142578125
+['./datasets/cityscapes/test_label/frankfurt_000001_055387_gtFine_labelIds.png'] 31.72249984741211
+
+Mean EQ-T 30.18055508931478
